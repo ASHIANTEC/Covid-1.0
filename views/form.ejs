@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet"type="text/css" href="/css/style.css">
+
+    <title>REMDESIVIR DISTRIBUTION
+    </title>
+  </head>
+  <body>
+ <!-- --------------------------------main -------------------------------------------------------------------->
+  
+ <section id="form ">
+      
+  <div class="container">
+
+    <div class="card my-3">
+      
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="img\tnlogo.png"class="img-fluid"alt="logo"width="80">
+          </div>
+      <div class="col-md-6 mt-3 text-center">
+        <h5 class="card-title"
+        ><span>Government of Tamilnadu</span><br>
+Tamilnadu Medical Services Corporation <br> Remdesivir Sales Depot, <br>
+Tirunelveli Medical College, Tirunelveli - 627011
+</h5>
+
+      </div>
+      <div class="col-md-3"style="text-align:end">
+        <img src="img\logo.gif"class="img-fluid"alt="logo"width="80">
+      </div>
+            </div>
+            <label>
+              <div class="col-sm-12 text-success"><%=message%></div>
+            </label>
+      <a href="/">
+        <button type="button" class="btn btn-danger btn-sm float-right"style="    position: relative;
+        top: 46px;
+    ">Logout</button>
+        </a>
+      </div>
+      
+     
+      <div class="toolbar no-print text-center ">
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Medicine</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Report</a>
+        </li>
+      
+      </ul>
+      </div>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+
+          <section id="candetails" class="p-3">
+            <div class="container">
+              
+ 
+              <form class="form-horizontal"   role="form" method="post" action="/report"
+              onClick="return empty()"id="Form1">
+              </form>
+                   <form class="form-horizontal"id="Form2" method="POST" role="form"  ></form>
+              
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1" class="text-danger"> Aadhar Number
+                      *</label>
+                      
+
+                    <input type="text" class="form-control" form="Form2" maxLength="12"title="Enter a 12 characters Aadhaar number!" pattern="[0-9]{12}" id="sourceTextField" onkeyup="change();"name="patient_aadhaar" Required/>
+                    <input type="text" class="form-control"form="Form1" maxLength="12" title="Enter a 12 characters Aadhaar number!"pattern="[0-9]{12}" hidden id="destinationTextField" value="" name="patient_aadhaar" Required/>
+                   
+                   <script>
+                     document.addEventListener("DOMContentLoaded", function() {
+    var elements = document.getElementsByTagName("INPUT");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].oninvalid = function(e) {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+                e.target.setCustomValidity("Enter a 12 digit aadhar number ");
+            }
+        };
+        elements[i].oninput = function(e) {
+            e.target.setCustomValidity("");
+        };
+    }
+})
+                   </script>
+
+                </div>
+                </div>
+                <div class="col-md-1 mt-2">
+                  <button type="submit" form="Form2" formaction="/verify" class="btn btn-info btn-sm mt-3">Verify Aadhar</button>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput2">
+                      Name of the Patient
+
+                      </label>
+                    <input type="text" class="form-control"  id="pn1" onkeyup="change1();" form="Form2"    name="patient_name"/>
+                    <input type="text" class="form-control"   hidden id="pn2" value=""  form="Form1"    name="patient_name"/>
+
+                  </div>
+                </div>
+               
+               
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleFormControlInput3" class=""> Age
+                  </label>
+                <input type="text" class="form-control"id="pa1" onkeyup="change2();" form="Form2"   name="patient_age"/>
+                <input type="text" class="form-control"id="pa2" value="" form="Form1" hidden  name="patient_age"/>
+              </div>
+          
+            </div>
+            
+            <div class="col-md-6">
+              <div class="form-group  p-1">
+                <label for="exampleFormControlSelect2" class="">Gender
+                </label>
+                <div class="d-flex " id="radio">
+                  <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="radio" name="patient_gender" value="male" id="pg1" onclick="check()" form="Form2"  id="inlineRadio1"/>
+                    <input class="form-check-input" type="radio"name="patient_gender" hidden id="pg2" value="male" form="Form1"   id="inlineRadio1"/>
+
+                    <label class="form-check-label" for="inlineRadio1">Male </label>
+                  </div>
+                 
+                  <div class="form-check form-check-inline  ">
+                    <input class="form-check-input" type="radio" name="patient_gender"  id="pg3" onclick="check1()"value="female"onkeyup="change3();" form="Form2"  id="inlineRadio1"/>
+
+                    <input class="form-check-input" type="radio" name="patient_gender"id="pg4"hidden value="female" form="Form1" id="inlineRadio2"/>
+                    <label class="form-check-label" for="inlineRadio2">Female</label>
+                  </div>
+               
+                  <div class="form-check form-check-inline  ">
+                    <input class="form-check-input" type="radio" name="patient_gender"id="pg5" onclick="check2();" value="third gender" form="Form2"   id="inlineRadio2"/>
+                    <input class="form-check-input" type="radio"  name="patient_gender" hidden id="pg6" value="third gender" form="Form1"   id="inlineRadio2"/>
+
+                    <label class="form-check-label" for="inlineRadio2">Third Gender</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleFormControlTextarea9"> Address
+                </label>
+                <textarea class="form-control"id="padd1" onkeyup="change4();" form="Form2" id="exampleFormControlTextarea9"name="patient_address" rows="2"></textarea>
+                <textarea class="form-control"id="padd2" value="" hidden form="Form1" id="exampleFormControlTextarea9"name="patient_address" rows="2"></textarea>
+
+              </div>
+            </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleFormControlInput10">
+                 Mobile Number of Patient           
+                         </label>
+                <input type="number" name="patient_phno"id="pm1" onkeyup="change5();" form="Form2" class="form-control" placeholder=""maxLength="10"pattern="[6-9]{1}[0-9]{9}"/>            
+                <input type="number" name="patient_phno"id="pm2" hidden value=""  form="Form1"  class="form-control" placeholder="" maxLength="10"pattern="[6-9]{1}[0-9]{9}"/>            
+     
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleFormControlInput6">
+                Name of Attender
+
+                </label>
+              <input type="text" class="form-control" id="an1" onkeyup="change6();" form="Form2"  id="exampFormControlInput6" name="attendar_name"/>
+              <input type="text" class="form-control" id="an2" hidden value="" form="Form1"  id="exampFormControlInput6" name="attendar_name"/>
+
+            </div>
+          </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="exampleFormControlInput7" class=""> Aadhar Number
+          
+            
+            </label>
+          <input type="text" class="form-control"id="aa1" maxLength="12" pattern="[0-9]{12}" onkeyup="change7();" form="Form2" title="Enter a 12 characters Aadhaar number!" id="exampleFormControlInput7" name="attendar_aadhaar"/>
+          <input type="text" class="form-control"id="aa2"maxLength="12"  pattern="[0-9]{12}" hidden value="" form="Form1" title="Enter a 12 characters Aadhaar number!" id="exampleFormControlInput7" name="attendar_aadhaar"/>
+
+        </div>
+      </div>
+
+    
+     
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="exampleFormControlInput11">
+            Mobile Number of Attender
+
+            </label>
+            <input type="number" name="attendar_phno" id="mm1" onkeyup="change12();" form="Form2"  class="form-control" placeholder=""maxlength="10" pattern="[6-9]{1}[0-9]{9}"/>                  
+            <input type="number" name="attendar_phno" hidden id="mm2" value="" form="Form1"  class="form-control" placeholder=""maxlength="10" pattern="[6-9]{1}[0-9]{9}"/>                  
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="exampleFormControlInput15">
+              Name of Referring Doctor
+  
+              </label>
+            <input type="text" class="form-control"id="adoc1" onkeyup="change8();" form="Form2"  id="exampFormControlInput15" name="ref_doctor"/>
+            <input type="text" class="form-control" hidden id="adoc2"value=""  form="Form1"  id="exampFormControlInput15" name="ref_doctor"/>
+  
+          </div>
+        </div>
+   
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="exampleFormControlInput1512">
+            CT Scan ID Number
+
+
+            </label>
+          <input type="text" class="form-control" id="mct1" onkeyup="change10();" form="Form2"  id="exampFormControlInput1512" name="ct_scan_id"/>
+          <input type="text" class="form-control" hidden id="mct2" value=""form="Form1"  id="exampFormControlInput1512" name="ct_scan_id"/>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="exampleFormControlInput115">
+            CT Scan Centre
+
+
+
+            </label>
+          <input type="text" class="form-control"id="mcent1" onkeyup="change11();" form="Form2"  id="exampFormControlInput115" name="ct_scan_centre"/>
+          <input type="text" class="form-control" hidden id="mcent2" value="" form="Form1"  id="exampFormControlInput115" name="ct_scan_centre"/>
+
+        </div>
+      </div>
+   
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="exampleFormControlInput15">
+            PCR Report / ICMR Number
+
+
+            </label>
+          <input type="text" class="form-control" id="mpcr1" onkeyup="change9();" form="Form2"  id="exampFormControlInput15" name="pcr_icmr"/>
+          <input type="text" class="form-control" hidden id="mpcr2" value=""form="Form1"  id="exampFormControlInput15" name="pcr_icmr"/>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="exampleFormControlInput11">
+            Receipt Number
+          </label>
+            <input type="text" id="mrecp1" onkeyup="change13();" form="Form2"name="receipt_no"
+            class="form-control" placeholder="" />   
+            <input type="text" id="mrecp2" value=""hidden form="Form1" name="receipt_no"
+           class="form-control" placeholder="" />  
+          </div>
+      </div>
+   
+           
+       
+         <div class="col-md-9"></div>
+              <div class="col-md-3 d-flex">
+                <button type="submit"form="Form2"  formaction="/final_verify" class="btn btn-primary btn-sm mr-2">Submit</button>
+              
+              <button type="submit"form="Form1"
+              class="btn btn-secondary" data-toggle="" data-target="">
+                Submit & Print
+               </button>
+               
+              <button type="reset" form="Form2"class="btn btn-danger btn-sm ml-2">Reset</button>
+
+              </div>
+           
+
+
+          </section>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+ <!-- --------------------------------main -------------------------------------------------------------------->
+
+ <section id="form ">
+      
+  <div class="container">
+    <div class="toolbar no-print text-center ">
+      
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+      <!-- Button trigger modal -->
+      <form class="form-horizontal" role="form" method="post" action="/report1" onclick="return empty()">
+        <div class="form-group">
+          <label for="exampleFormControlInput1" class="text-danger">Search Aadhar Number
+            *</label>
+          <input type="text" class="form-control" maxLength="12" pattern="[0-9]{12}"title="Enter a 12 characters Aadhaar number!" id="exampleFormControlInput1" name="patient_aadhaar" required="">
+         
+        </div>
+        
+        
+       
+
+       
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-secondary btn-sm mt-4 "id="print">search</button>
+          <button class="btn btn-primary btn-sm mt-4 " onclick="window.print()">   Print Report
+          </button>
+        </div>
+      </form>
+        </div>
+    </div>
+      
+    <div class="card my-3"id="cardhide">
+   
+     
+    
+      <section id="candetails" class="p-3">
+        <div class="container">
+
+            <form class="form-horizontal" role="form" method="post" action="/report1" onClick="return empty()">
+              <% if(userData.length!=0){ var i=1; userData.forEach(function(classdata){ %>
+
+          <div class="row">
+        
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="exampleFormControlInput1" class="text-danger"> Aadhar Number
+                  *</label>
+                  <p> <%=classdata.patient_aadhaar %></p>
+
+    
+              </div>
+            </div>
+          
+           
+            
+           
+          
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="exampleFormControlInput2">
+                  Name of the Patient
+                  <p> <%=classdata.patient_name %></p>
+
+                  </label>
+              </div>
+            </div>
+           
+          
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="exampleFormControlInput3" class=""> Age
+              </label>
+            <p><%=classdata.patient_age %></p>
+          </div>
+      
+        </div>
+    
+        <div class="col-md-4">
+          <div class="form-group  p-1">
+            <label for="exampleFormControlSelect2" class="">Gender
+            </label>
+           <p><%=classdata.patient_gender%></p>
+          </div>
+        </div>
+   
+     
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea9"> Address
+            </label>
+            <p><%= classdata.patient_address%></p>
+          </div>
+        </div>
+    
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleFormControlInput10">
+             Mobile Number of Patient           
+                     </label>
+                     <p> <%=classdata.patient_phno %></p>
+                    </div>
+      </div>
+     
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleFormControlInput6">
+            Name of Attender
+
+            </label>
+            <p> <%=classdata.attendar_name %></p>
+          </div>
+      </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="exampleFormControlInput7" class=""> Aadhar Number
+      
+        
+        </label>
+<p><%=classdata.attendar_aadhaar %></p>
+    </div>
+  </div>
+
+
+ 
+
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="exampleFormControlInput15">
+        Name of Referring Doctor
+
+        </label>
+        <p><%=classdata.ref_doctor %></p>
+
+    </div>
+  </div>
+ 
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="exampleFormControlInput15">
+        PCR Report / ICMR Number
+
+
+        </label>
+      <p><%=classdata.pcr_icmr %></p>
+
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="exampleFormControlInput1512">
+        CT Scan ID Number
+
+
+        </label>
+        <p><%=classdata.ct_scan_id %></p>
+
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="exampleFormControlInput115">
+        CT Scan Centre
+
+
+
+        </label>
+        <p><%=classdata.ct_scan_centre %></p>
+
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="exampleFormControlInput11">
+        Mobile Number of Attender
+
+        </label>
+        <p><%=classdata.attendar_phno %></p>
+
+  </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="exampleFormControlInput11">
+        Receipt Number
+      </label>
+      <p><%=classdata.receipt_no %></p>
+
+ 
+      
+      </div>
+  </div>
+
+
+   
+  
+        </div>
+        </div>
+        <% i++; }) %>
+        <% } else{ %>
+
+          <% } %>
+</form>
+      </section>
+  
+    </div>
+  </div>
+
+</section>
+
+
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+      </div>
+  
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <p class="text-center">Designed & Developed by @<b><a href="https://ashiantechnologies.com/" text-primary="">ASHIAN TECHNOLOGIES </a></b> </p>
+  </footer>
+<!-- -----------------------print Modal--------------------------------- -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+       
+        <form class="form-horizontal"   role="form" method="post" action="/report1"
+        onClick="return empty()">
+        <div class="form-group">
+          <label for="exampleFormControlInput1" class="text-danger"> Aadhar Number
+            *</label>
+          <input type="text" class="form-control" id="exampleFormControlInput1" name="patient_aadhaar"title="Enter a 12 characters Aadhaar number!" required>
+          <div class="help-block with-errors"></div>
+
+        </div>
+        
+        <button type="button" class="btn btn-secondary btn-sm float-right" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary btn-sm float-right mr-2">Print</button>
+
+        </form>
+            </div>
+    </div>
+  </div>
+</div>
+<!-- <%= message %> as <%- message %> -->
+
+    <!-- -----------------------------------------js file---------------------------------------------------------------->
+    
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+   <script>
+     function change(){ 
+                var src= document.getElementById("sourceTextField"); 
+                var dest= document.getElementById("destinationTextField"); 
+                dest.value=src.value; 
+            } 
+            function change1(){ 
+                var src= document.getElementById("pn1"); 
+                var dest= document.getElementById("pn2"); 
+                dest.value=src.value; 
+            } 
+            function change2(){ 
+                var src= document.getElementById("pa1"); 
+                var dest= document.getElementById("pa2"); 
+                dest.value=src.value; 
+            } 
+            function change3(){ 
+                var src= document.getElementById("pg1"); 
+                var dest= document.getElementById("pg2"); 
+                dest.value=src.value; 
+            } 
+            function change4(){ 
+                var src= document.getElementById("padd1"); 
+                var dest= document.getElementById("padd2"); 
+                dest.value=src.value; 
+            } 
+            function change5(){ 
+                var src= document.getElementById("pm1"); 
+                var dest= document.getElementById("pm2"); 
+                dest.value=src.value; 
+            } 
+            function change6(){ 
+                var src= document.getElementById("an1"); 
+                var dest= document.getElementById("an2"); 
+                dest.value=src.value; 
+            } 
+            function change7(){ 
+                var src= document.getElementById("aa1"); 
+                var dest= document.getElementById("aa2"); 
+                dest.value=src.value; 
+            } 
+            function change8(){ 
+                var src= document.getElementById("adoc1"); 
+                var dest= document.getElementById("adoc2"); 
+                dest.value=src.value; 
+            } 
+            function change9(){ 
+                var src= document.getElementById("mpcr1"); 
+                var dest= document.getElementById("mpcr2"); 
+                dest.value=src.value; 
+            } 
+            function change10(){ 
+                var src= document.getElementById("mct1"); 
+                var dest= document.getElementById("mct2"); 
+                dest.value=src.value; 
+            } 
+            function change11(){ 
+                var src= document.getElementById("mcent1"); 
+                var dest= document.getElementById("mcent2"); 
+                dest.value=src.value; 
+            } 
+            function change12(){ 
+                var src= document.getElementById("mm1"); 
+                var dest= document.getElementById("mm2"); 
+                dest.value=src.value; 
+            } 
+            function change13(){ 
+                var src= document.getElementById("mrecp1"); 
+                var dest= document.getElementById("mrecp2"); 
+                dest.value=src.value; 
+            } 
+        
+   </script>
+   <script>
+
+$("#profile-tab").click(function(){
+  
+    document.getElementById('cardhide').style.display = 'none';
+
+});
+
+$(document).ready(function() {
+  $("#print").click(function(){
+
+  $("#cardhide").show();
+
+});
+});
+   </script>
+   <script>
+  $(function() {
+    $('a[data-toggle="tab"]').on('click', function(e) {
+        window.localStorage.setItem('activeTab', 
+        $(e.target).attr('href'));
+    });
+    var activeTab = window.localStorage.getItem('activeTab');
+    if (activeTab) {
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+        window.localStorage.removeItem("activeTab");
+    }
+});
+
+                    function check() {
+                      document.getElementById("pg2").checked = true;
+                    }
+                    function check1() {
+                      document.getElementById("pg4").checked = true;
+                    }
+                    function check2() {
+                      document.getElementById("pg6").checked = true;
+                    }
+                    
+                   
+  </script>
+
+  </body>
+</html>
